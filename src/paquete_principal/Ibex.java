@@ -1,5 +1,6 @@
 package paquete_principal;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -83,6 +84,15 @@ public class Ibex implements Interfaz_Ibex {
 		return getCloseAvg(paso_a_fecha(ini), paso_a_fecha(fin), ruta);
 	}
 
+	/**
+	 * Metodo que a partir de una cadena de caracteres espedifica se combierte a
+	 * la fecha correspondiente
+	 * 
+	 * @author Bufigol
+	 * @param entada
+	 *            Un string correspondiente a la fecha con el formato YYYYMMDD
+	 * @return La fecha correspondiente al String del parametro de entrada
+	 */
 	private Date paso_a_fecha(String entada) {
 		SimpleDateFormat paso_a_fecha = new SimpleDateFormat("dd/MM/yyyy");
 		try {
