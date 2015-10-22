@@ -18,9 +18,8 @@ import java.util.Scanner;
 
 public class Ibex implements Interfaz_Ibex {
 
-	public static ArrayList<Date> getDatePoints(long points, String path) {
+	public ArrayList<Date> getDatePoints(long points, String path) {
 		ArrayList<Date> fechas = new ArrayList();
-		;
 		File listaCsv = new File(path);
 		try {
 
