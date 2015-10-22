@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public interface Interfaz_Ibex {
+
 	public float getCloseAvg(Date ini, Date fin, String path)
 			throws IOException, NumberFormatException, ParseException;
 
