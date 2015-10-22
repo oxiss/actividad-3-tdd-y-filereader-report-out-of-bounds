@@ -19,41 +19,41 @@ import java.util.StringTokenizer;
 
 public class Ibex implements Interfaz_Ibex {
 	private String path;
-public float getCloseValue(int year, String path) {
 
-		
+	public float getCloseValue(int year, String path) {
+
 		float aux = 0.0F;
 		float acumulado = 0.0F;
 		String cadena;
-		int contador=0;
+		int contador = 0;
 		FileReader f = null;
 		String yearSt = Integer.toString(year);
-		
+
 		try {
 			f = new FileReader(path);
 		} catch (FileNotFoundException e) {
 			System.err.println("el archivo no existe");
 			return -1;
 		}
-		//creamos un arraylist y comenzamos a leer el archivo
+		// creamos un arraylist y comenzamos a leer el archivo
 		List<String> datos = new ArrayList<String>();
 		BufferedReader bReader = new BufferedReader(f);
 
 		try {
-			//añadimos los datos al Arraylist
+			// añadimos los datos al Arraylist
 			while ((cadena = bReader.readLine()) != null) {
 				datos.add(cadena);
 			}
 			bReader.close();
 		} catch (IOException e) {
-			
+
 			System.err.println("Error al meter los datos en el Arraylist");
 			return -1;
 		}
 		// recorremos el Arraylist haciendo tokens en los lugares escogidos
 		for (String indice : datos) {
 			StringTokenizer st = new StringTokenizer(indice, ",");
-			//cogemos el tercer token (donde está la fecha)
+			// cogemos el tercer token (donde está la fecha)
 			for (int i = 0; i < 2; i++) {
 				st.nextToken();
 			}
@@ -63,26 +63,27 @@ public float getCloseValue(int year, String path) {
 				for (int i = 0; i < 4; i++) {
 					st.nextToken();
 				}
-				//y lo vamos sumando en acumulado
+				// y lo vamos sumando en acumulado
 				aux = Float.parseFloat(st.nextToken());
 				acumulado = acumulado + aux;
-				//contador con 2 funciones: saber si hay filas para el año dado (!=0) y contar para el divisor
+				// contador con 2 funciones: saber si hay filas para el año dado
+				// (!=0) y contar para el divisor
 				contador++;
 			}
 		}
-		acumulado = acumulado/contador;
-		//System.out.println(acumulado); (prueba para ver las medias)
+		acumulado = acumulado / contador;
+		// System.out.println(acumulado); (prueba para ver las medias)
 		// si han existido filas (>1)
-		if (contador>1){
+		if (contador > 1) {
 			return acumulado;
-		}
-		else{
-			// si no han existido filas (<1) 
+		} else {
+			// si no han existido filas (<1)
 			System.err.println("la fecha introducida no es correcta");
 			return (float) 0.0;
 		}
-		
+
 	}
+
 	public ArrayList<Date> getDatePoints(long points, String path) {
 		ArrayList<Date> fechas = new ArrayList();
 		File listaCsv = new File(path);
