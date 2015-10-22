@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 /*
  * prueba de conexion desde eclipse a rama javi
+ * otra prueba
  */
 public interface Interfaz_Ibex {
 	public float getCloseAvg(Date ini, Date fin, String path)
