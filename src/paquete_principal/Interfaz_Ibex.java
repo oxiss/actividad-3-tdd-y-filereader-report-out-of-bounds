@@ -3,7 +3,7 @@ package paquete_principal;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
-
+//prueba de conexion
 public interface Interfaz_Ibex {
 	public float getCloseAvg(Date ini, Date fin, String path)
 			throws IOException, NumberFormatException, ParseException;
