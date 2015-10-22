@@ -163,47 +163,49 @@ public class Ibex implements Interfaz_Ibex {
 		if (ini.after(fin)) {
 			System.out
 					.println("La fecha de inicio es posterior a la fecha de fin");
-			media_salida = -1;
+			return -1;
 		} else {
 			Path archivo = FileSystems.getDefault().getPath(path);
 			if (archivo.toFile().isDirectory()) {
 				System.out
 						.println("La Ruta indicada corresponde a un directorio");
-				media_salida = -1;
+				return -1;
 			} else {
 				if (!archivo.getFileName().toString().endsWith(".csv")) {
 					System.out.println("No es el tipo de archivo correcto");
-					media_salida = -1;
+					return -1;
 				} else {
 					if (archivo.getFileName().toString()
 							.equals("bolsaes_^IBEX_20151014.csv")) {
 						BufferedReader lector = new BufferedReader(
 								new FileReader(path));
 						String linea = lector.readLine();
-						while ((linea = lector.readLine()) != null) {
-
-							if ((paso_a_fecha(linea.split(",")[2]).compareTo(
-									ini) >= 0)
-									&& (paso_a_fecha(linea.split(",")[2])
-											.compareTo(fin) <= 0)) {
-								media_salida += Float
-										.valueOf(linea.split(",")[7]);
-								num_elementos++;
+						boolean dentro_rango = false;
+						while (((linea = lector.readLine()) != null)
+								&& (dentro_rango != false)) {
+							if (paso_a_fecha(linea.split(",")[2])
+									.compareTo(ini) == 0) {
+								dentro_rango = true;
+							}
+						}
+						while (((linea = lector.readLine()) != null)
+								&& dentro_rango) {
+							media_salida += Float.valueOf(linea.split(",")[7]);
+							num_elementos++;
+							if (paso_a_fecha(linea.split(",")[2])
+									.compareTo(fin) == 0) {
+								dentro_rango = true;
 							}
 						}
 						lector.close();
+						return media_salida / num_elementos;
 					} else {
 						System.out.println("No es el archivo correcto.");
-						media_salida = -1;
-						num_elementos++;
+						return -1;
 					}
 				}
 			}
 		}
-		if (media_salida > 0) {
-			media_salida = media_salida / num_elementos;
-		}
-		return media_salida;
 	}
 
 	public float getCloseAvg(Date ini, Date fin) throws NumberFormatException,
