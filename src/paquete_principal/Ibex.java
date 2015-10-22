@@ -228,19 +228,11 @@ public class Ibex implements Interfaz_Ibex {
 	 * @param entada
 	 *            Un string correspondiente a la fecha con el formato YYYYMMDD
 	 * @return La fecha correspondiente al String del parametro de entrada
+	 * @throws ParseException
 	 */
-	private Date paso_a_fecha(String entada) {
-		SimpleDateFormat paso_a_fecha = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			return paso_a_fecha.parse(entada.substring(6, 8) + "/"
-					+ entada.substring(4, 6) + "/" + entada.substring(0, 4));
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Se dio un error al entrar la fecha");
-			e.printStackTrace();
-			return null;
-		}
+	private Date paso_a_fecha(String entada) throws ParseException {
+		SimpleDateFormat paso_a_fecha = new SimpleDateFormat("YYYYMMDD");
+		return paso_a_fecha.parse(entada);
 	}
 
 	@Override
