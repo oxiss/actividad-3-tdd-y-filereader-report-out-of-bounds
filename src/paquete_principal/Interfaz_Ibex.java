@@ -2,6 +2,7 @@ package paquete_principal;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public interface Interfaz_Ibex {
@@ -16,4 +17,8 @@ public interface Interfaz_Ibex {
 
 	public float getCloseAvg(String ini, String fin, String ruta)
 			throws NumberFormatException, IOException, ParseException;
+
+	public ArrayList<Date> getDatePoints(long points, String path);
+
+	public float getCloseValue(int year, String path);
 }
