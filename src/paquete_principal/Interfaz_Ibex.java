@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-
+/*
+ * prueba de conexion desde eclipse a rama javi
+ */
 public interface Interfaz_Ibex {
 	public float getCloseAvg(Date ini, Date fin, String path)
 			throws IOException, NumberFormatException, ParseException;
