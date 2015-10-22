@@ -95,49 +95,42 @@ public class Ibex implements Interfaz_Ibex {
 		ArrayList<Date> fechas = new ArrayList();
 		File listaCsv = new File(path);
 		try {
-
 			int count = 0;// Counter for evade the title String.
-			double close;// Variable where the string of the close data becomes
-							// double.
+			/*
+			 * Variable where the string of the close data becomes double.
+			 */
+			double close;
+			/*
+			 * List where all the lines are saved with and UFT_8 standard.
+			 */
 			List<String> lines = Files.readAllLines(listaCsv.toPath(),
-					StandardCharsets.UTF_8);// List
-											// where
-											// all
-											// the
-											// lines
-											// are
-											// saved
-											// with
-											// and
-											// UFT_8
-											// standard.
+					StandardCharsets.UTF_8);
 			for (String line : lines) {// For any String in the List lines:
 				if (count > 0) { // The condition that will evade the title.
-					String[] array = line.split(",");// The lines are cutted in
-														// the , character and
-														// that parts introduced
-														// into an array.
-					DateFormat format = new SimpleDateFormat("yyyyMMdd");// The
-																			// string
-																			// date
-																			// is
-																			// transformed
-																			// into
-																			// a
-																			// date
-																			// with
-																			// ans
-																			// specific
-																			// format.
-					Date fecha = format.parse(array[2]);// We parse the format
-														// of string to the
-														// selected one of date.
-					close = Double.parseDouble(array[7]);// Transform the value
-															// from String to
-															// double.
-					if (close > points) {// If the double value is higher than
-											// the one received as parameter, it
-											// will be added to the final array.
+					/*
+					 * The lines are cutted in the , character and that parts
+					 * introduced into an array.
+					 */
+					String[] array = line.split(",");
+					/*
+					 * The string date is transformed into a date with and
+					 * specific format.
+					 */
+					DateFormat format = new SimpleDateFormat("yyyyMMdd");
+					/*
+					 * We parse the format of string to the selected one of
+					 * date.
+					 */
+					Date fecha = format.parse(array[2]);
+					/*
+					 * Transform the value from String to double.
+					 */
+					close = Double.parseDouble(array[7]);
+					/*
+					 * If the double value is higher than the one received as
+					 * parameter, it will be added to the final array.
+					 */
+					if (close > points) {
 						fechas.add(fecha);
 					}
 				}
