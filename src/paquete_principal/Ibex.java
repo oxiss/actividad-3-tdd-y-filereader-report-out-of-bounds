@@ -243,4 +243,16 @@ public class Ibex implements Interfaz_Ibex {
 		}
 	}
 
+	@Override
+	public float getCloseValue(Date fecha, String path) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getValue(Date fecha, int field, String path) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
