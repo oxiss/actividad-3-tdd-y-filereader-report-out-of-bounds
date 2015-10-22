@@ -36,5 +36,3 @@ public interface Interfaz_Ibex {
 	public ArrayList<Date> getDatePoints(long points, String path);//Punto 6
 
 }
-
-
