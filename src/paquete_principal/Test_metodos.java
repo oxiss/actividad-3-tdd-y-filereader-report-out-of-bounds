@@ -1,10 +1,12 @@
 package paquete_principal;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Date;
 
 import org.junit.Test;
+
+
 
 public class Test_metodos {
 	private String ruta_archivo = "/home/felipev/Descargas/bolsaes_^IBEX_20151014.csv";
