@@ -241,10 +241,57 @@ public class Ibex implements Interfaz_Ibex {
 		return 0;
 	}
 
-	@Override
-	public float getValue(Date fecha, int field, String path) {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getValue(Date fecha, int field, String path ){
+		
+		BufferedReader br = null;
+		String linea = "";
+		String [] bolsa = null;
+		String salidapantalla = "";
+		String stringFecha = dateToString(fecha);
+				
+		try {
+			FileReader fichero = new FileReader(path);
+			br = new BufferedReader(fichero);
+			while ((linea = br.readLine()) != null) {
+				bolsa = linea.split(",");
+			}	
+			br.close();
+			
+			if (bolsa[2].equals(stringFecha)){
+				if (field== 4){	
+					salidapantalla = " El valor de apertura es ";
+				}else if (field == 5){
+					salidapantalla = " El valor mas alto es ";
+				}else if (field == 6){
+					salidapantalla = " El valor mas bajo es ";
+				}else if (field == 7){
+					salidapantalla = " El valor de cierre es ";
+				}else
+					System.err.println("-1");				
+				
+				System.out.println("Fecha: " + bolsa[2] + salidapantalla + bolsa[field]);
+
+			}else {
+				System.out.println("0,0");
+			}
+
+		}catch (IOException e){
+			System.err.println("-1");
+
+		}
+			
+		return field;
+		
+	}
+	private static String dateToString(Date fecha) {
+		String stringFecha =  null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		try{
+			stringFecha = sdf.format(fecha);
+		}
+		catch(Exception e){
+		}
+		return stringFecha;
 	}
 
 }
