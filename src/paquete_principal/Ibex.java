@@ -22,8 +22,9 @@ public class Ibex implements Interfaz_Ibex {
 
 	public float getCloseValue(int year, String path) {
 
-		float aux = 0.0F;
+		String aux = null;
 		float acumulado = 0.0F;
+		float aux2 = 0.0F;
 		String cadena;
 		int contador = 0;
 		FileReader f = null;
@@ -54,25 +55,25 @@ public class Ibex implements Interfaz_Ibex {
 		for (String indice : datos) {
 			StringTokenizer st = new StringTokenizer(indice, ",");
 			// cogemos el tercer token (donde está la fecha)
-			for (int i = 0; i < 2; i++) {
-				st.nextToken();
+			String[] filas = new String[10];
+
+			for (int i = 0; i < filas.length; i++) {
+				filas[i] = st.nextToken();
 			}
-			// si el tercer token empieza con el año indicado...
-			if (st.nextToken().startsWith(yearSt)) {
-				// buscamos el 8º token (cierres)
-				for (int i = 0; i < 4; i++) {
-					st.nextToken();
+			for (int i = 0; i < filas.length; i++) {
+				if (filas[2].startsWith(yearSt)) {
+					aux = filas[7];
+					aux2 = Float.parseFloat(aux);
+					contador++;
+					acumulado=acumulado+aux2;
 				}
-				// y lo vamos sumando en acumulado
-				aux = Float.parseFloat(st.nextToken());
-				acumulado = acumulado + aux;
-				// contador con 2 funciones: saber si hay filas para el año dado
-				// (!=0) y contar para el divisor
-				contador++;
 			}
+			
 		}
-		acumulado = acumulado / contador;
-		// System.out.println(acumulado); (prueba para ver las medias)
+		acumulado=acumulado/contador;
+		
+		
+		//System.out.println(acumulado); (prueba para ver las medias)
 		// si han existido filas (>1)
 		if (contador > 1) {
 			return acumulado;
